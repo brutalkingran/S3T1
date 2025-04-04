@@ -21,7 +21,7 @@ export const obtenerSuperheroePorIdController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al obtener el superhéroe`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -35,7 +35,7 @@ export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al obtener los superhéroes`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -56,7 +56,7 @@ export const buscarSuperheroesPorAtributoController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al buscar lo/s superhéroe`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -77,22 +77,24 @@ export const obtenerSuperheroesMayoresDe30Controller = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al obtener superhéroes mayores de 30`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
 
 export const crearSuperheroeController = async ( req, res ) => {
+    console.log(req.body);
+    
     try {
         const { nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador } = req.body;
 
-        const superheroeFormateado = await crearSuperheroe( nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador );
-
-        res.status(201).json(superheroeFormateado); // 201 indica que se ha creado un recurso.
+        const superheroe = await crearSuperheroe( nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador );
+        
+        res.status(201).json(superheroe); // 201 indica que se ha creado un recurso.
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al crear superhéroe`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -107,7 +109,7 @@ export const actualizarSuperheroeController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al actualizar superhéroe`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -122,7 +124,7 @@ export const borrarSuperheroeIDController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al eliminar superhéroe por ID`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
@@ -137,7 +139,7 @@ export const borrarSuperheroeNombreController = async ( req, res ) => {
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al eliminar superhéroe por nombre de superhéroe`,
-            error: error.mensaje
+            error: error.message
         });
     }
 }
