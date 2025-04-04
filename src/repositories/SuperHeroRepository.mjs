@@ -32,19 +32,21 @@ class SuperHeroeRepository extends IRepository {
         ] } );
     }
 
-    async crearHeroe( nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador ) {
-        return await superHeroe.insertOne( {
-            nombreSuperHeroe: nombreSuperHeroe,
-            nombreReal: nombreReal,
-            edad: edad,
-            planetaOrigen: planetaOrigen,
-            debilidad: debilidad,
-            poderes: poderes,
-            aliados: aliados,
-            enemigos: enemigos,
-            creador: creador
+    async crearHeroe(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
+        const nuevoSuperheroe = new superHeroe({
+            nombreSuperHeroe,
+            nombreReal,
+            edad,
+            planetaOrigen,
+            debilidad,
+            poderes,
+            aliados,
+            enemigos,
+            creador
         });
-    };
+
+        return await nuevoSuperheroe.save(); // Guarda el nuevo superhéroe en la base de datos
+    }
 
     async actualizarHeroe( nombre, cambio ) {
         return await superHeroe.findOneAndUpdate({ nombreSuperHeroe : nombre }, cambio, { new: true }); // devuelve documento actualizado
